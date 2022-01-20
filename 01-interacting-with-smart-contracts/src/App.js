@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
-import { getOwnBalance } from './Web3Client';
+import { getSafeBurn } from './Web3Client';
 
 function App() {
-	// const [minted, setMinted] = useState(false);
-	const [balance, setBalance] = useState(0);
+	 const [burnt, setBurn] = useState(false);
+	//const [balance, setBalance] = useState(0);
 
 	// const mint = () => {
 	// 	mintToken()
@@ -17,26 +17,37 @@ function App() {
 	// 		});
 	// };
 
-	const fetchBalance = () => {
-		getOwnBalance()
-			.then((balance) => {
-				setBalance(balance);
+  const burn = () => {
+		getSafeBurn()
+			.then((id) => {
+				console.log(id);
+				setBurn(true);
 			})
 			.catch((err) => {
 				console.log(err);
 			});
 	};
 
+	// const fetchBurn = () => {
+	// 	getSafeBurn()
+	// 		.then((balance) => {
+	// 			setBalance(balance);
+	// 		})
+	// 		.catch((err) => {
+	// 			console.log(err);
+	// 		});
+	// };
+
 	return (
 		<div className="App">
-			{/* {!minted ? (
-				<button onClick={() => mint()}>Mint token</button>
+			{ {!burnt ? (
+				<button onclick="burn()"> Burn token </button>
 			) : (
-				<p>Token minted successfully!</p>
-			)} */}
-			<p>Your balance is {balance}</p>
-			<button onClick={() => fetchBalance()}>Refresh balance</button>
-		</div>
+				<p>Token Burnt successfully!</p>
+			)} }
+		// 	<p>Your balance is {balance}</p>
+		// 	<button onClick={() => fetchBalance()}>Refresh balance</button>
+		// </div>
 	);
 }
 
